@@ -1,41 +1,18 @@
-﻿@if (Movies == null)
-{
-    if(NullTemplate != null)
-    {
-        @NullTemplate
-    } 
-    else
-    {
-        <img src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" />
-    }
+﻿<input type="checkbox" @bind="displayButtons" />
 
-}
-else if (Movies.Count == 0)
-{
-    if(EmptyTemplate != null)
-    {
-        @EmptyTemplate
-    } 
-    else
-    {
-        //default content
-        <text>There are not records to show</text>        
-    }
-}
-else
-{
-    <input type="checkbox" @bind="displayButtons" />
-    @foreach (var movie in Movies)
-    {
-        <IndividualMovie Movie="movie" DeleteMovie="DeleteMovie"  DisplayButtons="displayButtons" />
-    }
-}
+<GenericList List="Movies">
+    <ElementTemplate>
+        <IndividualMovie Movie="context"
+                         DeleteMovie="DeleteMovie"
+                         DisplayButtons="displayButtons" />
+    </ElementTemplate>
+</GenericList>
+
 
 @code {
 
     [Parameter] public List<Movie> Movies { get; set; }
-    [Parameter] public RenderFragment NullTemplate { get; set; }
-    [Parameter] public RenderFragment EmptyTemplate { get; set; }
+
 
     bool displayButtons = false;
 
