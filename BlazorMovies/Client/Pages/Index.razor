@@ -2,7 +2,14 @@
 
 <div>
     <h3>Movies</h3>
-    <MoviesList Movies="movies" />
+    <MoviesList Movies="movies" >
+        <NullTemplate>
+            <span style="color: red">This is loading...</span>
+        </NullTemplate>
+        <EmptyTemplate>
+            <span style="color: blue">No records to see...</span>
+        </EmptyTemplate>
+    </MoviesList>
 </div>
 
 <div>
@@ -15,7 +22,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(500);
+        await Task.Delay(5000);
         
         movies = new List<Movie>()
         {

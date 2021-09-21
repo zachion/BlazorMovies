@@ -1,10 +1,26 @@
 ﻿@if (Movies == null)
 {
-    <img src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" />
+    if(NullTemplate != null)
+    {
+        @NullTemplate
+    } 
+    else
+    {
+        <img src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" />
+    }
+
 }
 else if (Movies.Count == 0)
 {
-    <text>There are not records to show</text>
+    if(EmptyTemplate != null)
+    {
+        @EmptyTemplate
+    } 
+    else
+    {
+        //default content
+        <text>There are not records to show</text>        
+    }
 }
 else
 {
@@ -18,6 +34,8 @@ else
 @code {
 
     [Parameter] public List<Movie> Movies { get; set; }
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
 
     bool displayButtons = false;
 
