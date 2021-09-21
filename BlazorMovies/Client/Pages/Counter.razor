@@ -6,9 +6,15 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-<MoviesList Movies="movies" />
+@*<MoviesList Movies="movies" />*@
 
-@code { private List<Movie> movies { get; set; }
+<input type="number" @bind="currentCount" />
+
+@code { 
+    
+    private List<Movie> movies { get; set; }
+    
+    private int currentCount = 0;
 
     protected override async Task OnInitializedAsync()
     {
@@ -20,8 +26,6 @@
             new Movie(){Title = "Avengers", ReleaseDate = new DateTime(2016, 11, 23)},
         };
     }
-
-    private int currentCount = 0;
 
     private void IncrementCount()
     {
